@@ -31,8 +31,10 @@
 # Output: 1994
 # Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 
+s = 'III'
+rom_num = "CMXCIV"
 
-
+# My solution:
 values = {"I": 1,
           "V": 5,
           "X": 10,
@@ -42,7 +44,31 @@ values = {"I": 1,
           "M": 1000,
           }
 
-s = 'III'
+def romanToInt(s):
+    total = 0
+    i_0 = 0
+    while i_0 < len(s):
+        if (i_0 + 1) < len(s) and \
+                values[s[i_0 + 1]] > values[s[i_0]]:
+            total += values[s[i_0 + 1]] - values[s[i_0]]
+            i_0 += 2
+        else:
+            total += values[s[i_0]]
+            i_0 += 1
+    return total
+
+print(romanToInt(s))
+print(romanToInt(rom_num))
+
+# LeetCode solution:
+values = {"I": 1,
+          "V": 5,
+          "X": 10,
+          "L": 50,
+          "C": 100,
+          "D": 500,
+          "M": 1000,
+          }
 
 def romanToInt(s):
     total = 0
@@ -59,6 +85,9 @@ def romanToInt(s):
             total += values[s[i_0]]
             i_0 += 1
     return total
+
+print(romanToInt(s))
+print(romanToInt(rom_num))
 
 # Highest-voted answer:
 def romanToInt(s):
@@ -81,3 +110,6 @@ def romanToInt(s):
         number += translations[char]
     # Return final number:
     return number
+
+print(romanToInt(s))
+print(romanToInt(rom_num))
